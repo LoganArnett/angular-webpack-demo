@@ -1,9 +1,13 @@
-var webpack = require('webpack');
+var webpack = require('webpack'),
+	CleanPlugin = require('clean-webpack-plugin'),
+	HtmlPlugin = require('html-webpack-plugin'),
+	ngAnnotatePlugin = require('ng-annotate-webpack-plugin'),
+	ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-	entry: './app.js',
+	entry: './app/app.js',
 	output: {
-		path: './app',
+		path: './dist',
 		filename: 'bundle.js'
 	},
 	module: {
@@ -15,11 +19,27 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				loader: 'style!css!sass'
+				loader: ExtractTextPlugin.extract(
+				    "style",
+				    "css!sass"
+				)
+			},
+			{
+				test: /\.html$/,
+				loader: 'ngtemplate!html'
 			}
        	]
  },
 	plugins: [
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
+		new CleanPlugin(['dist']),
+		new HtmlPlugin({
+			title: 'Smirnoff Yo!',
+			template: './app/index.ejs'
+		}),
+		new ngAnnotatePlugin({
+            add: true
+        }),
+		new ExtractTextPlugin("app.css")
    ]
 };
