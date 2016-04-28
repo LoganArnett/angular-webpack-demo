@@ -1,10 +1,11 @@
 class AboutCtrl {
-    constructor() {
+    constructor($state) {
+        this.$state = $state;
         this.message = 'Is What its all about YO!';
     }
 
     clickThat() {
-        alert('Routing!!!')
+        return this.$state.go('main');
     }
 }
 

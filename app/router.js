@@ -1,3 +1,7 @@
+// Templates
+import MainTemplate from './main/main.html'
+import AboutTemplate from './about/about.html'
+
 /* @ngInject */
 function Router($stateProvider, $urlRouterProvider) {
    $urlRouterProvider.otherwise("/");
@@ -6,12 +10,12 @@ function Router($stateProvider, $urlRouterProvider) {
        .state('main', {
            url: "/",
            controller : "MainCtrl as main",
-           templateUrl: require('./main/main.html')
+           templateUrl: MainTemplate
        })
        .state('about', {
            url: "/about",
            controller : "AboutCtrl as about",
-           templateUrl: require('./about/about.html')
+           templateUrl: AboutTemplate
        });
 }
 

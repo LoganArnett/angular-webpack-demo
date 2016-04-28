@@ -5,7 +5,7 @@ var webpack = require('webpack'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-	entry: './app/app.js',
+	entry: ['bootstrap-loader', './app/app.js'],
 	output: {
 		path: './dist',
 		filename: 'bundle.js'
@@ -19,14 +19,15 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				loader: ExtractTextPlugin.extract(
-				    "style",
-				    "css!sass"
-				)
+				loader: 'style!css!sass'
 			},
 			{
 				test: /\.html$/,
 				loader: 'ngtemplate!html'
+			},
+			{
+				test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+				loader: 'file-loader',
 			}
        	]
  },

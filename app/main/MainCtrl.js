@@ -1,10 +1,11 @@
 class MainCtrl {
-    constructor() {
+    constructor($state) {
+        this.$state = $state;
         this.message = 'Angular with Webpack and Babel!';
     }
 
     clickIt() {
-        alert('ES2015!!!')
+        return this.$state.go('about');
     }
 }
 
