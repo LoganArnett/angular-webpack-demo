@@ -1,3 +1,6 @@
+# Don't want to check in the bundle.js
+bundle.js
+
 # Logs
 logs
 *.log
